@@ -3,8 +3,9 @@ class snowflake
 	constructor()
 	{
 		this.type= Math.floor(Math.random()*2);
-		this.posY=100;
-		this.posX= Math.floor(Math.random() * 1000);
+		this.posY=Math.floor(Math.random()*100);
+		this.posX= Math.floor(Math.random() * 794);
+		this.speedSnow = Math.floor(1+Math.random()*4);
 
 console.log("X coordinate of snowflake: "+this.posX);
 	
@@ -48,7 +49,7 @@ console.log("X coordinate of snowflake: "+this.posX);
 
 	snow()
 	{
-		this.posY+=2;
+		this.posY+=this.speedSnow;
 		this.skin.style.top = this.posY +"px";
 	}
 }
@@ -59,11 +60,9 @@ class Main
 	{
 		this.kolSnow = 10;
 		this.mas = []; 
-		for(var i=0; i<this.kolSnow; i++)
+		for(var i=0; i<10; i++)
 		{
-			this.mas[i] = new snowflake();
-			//this.mas[i].identify();
-
+			this.createSnowflake();
 		}
 	}
 

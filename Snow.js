@@ -3,8 +3,8 @@ class snowflake
 	constructor()
 	{
 		this.type= Math.floor(Math.random()*2);
-		this.posY=Math.floor(Math.random()*100);
-		this.posX= Math.floor(Math.random() * 794);
+		this.posY=-50;
+		this.posX= Math.floor(Math.random() * document.body.clientWidth);
 		this.speedSnow = Math.floor(1+Math.random()*4);
 
 console.log("X coordinate of snowflake: "+this.posX);
@@ -60,10 +60,10 @@ class Main
 	{
 		this.kolSnow = 10;
 		this.mas = []; 
-		for(var i=0; i<10; i++)
+	/*	for(var i=0; i<10; i++)
 		{
 			this.createSnowflake();
-		}
+		}*/
 	}
 
 
@@ -85,6 +85,12 @@ class Main
 	{
 		console.log("Test"+this);
 		this.game();
+		if(time=10)
+		{
+			time=0;
+			this.createSnowflake();
+		}
+		time++;
 		//window.setInterval(this.pack, 100);
 		window.setTimeout(()=>this.play(), 100);
 	}
@@ -96,7 +102,7 @@ window.onload=function()
 	pl.play();
 }
 
-
+var time = 0;
 /*
 const myFunc = function(){
 ...

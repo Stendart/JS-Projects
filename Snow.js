@@ -15,6 +15,7 @@ console.log("X coordinate of snowflake: "+this.posX);
 		this.skin.style.left= this.posX + "px";
 		this.skin.style.top= this.posY + "px";
 		document.body.appendChild(this.skin);
+		this.identify();
 	}
 
 	identify()
@@ -56,14 +57,22 @@ class Main
 {
 	constructor()
 	{
-		this.mas = [10]; 
-		for(var i=0; i<10; i++)
+		this.kolSnow = 10;
+		this.mas = []; 
+		for(var i=0; i<this.kolSnow; i++)
 		{
 			this.mas[i] = new snowflake();
-			this.mas[i].identify();
+			//this.mas[i].identify();
+
 		}
 	}
 
+
+	createSnowflake()
+	{
+		this.kolSnow++;
+		this.mas[this.kolSnow] = new snowflake();
+	}
 
 	game()
 	{

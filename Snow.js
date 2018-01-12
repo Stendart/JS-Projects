@@ -52,6 +52,8 @@ console.log("X coordinate of snowflake: "+this.posX);
 		this.posY+=this.speedSnow;
 		this.skin.style.top = this.posY +"px";
 	}
+
+	
 }
 
 class Main
@@ -66,7 +68,6 @@ class Main
 		}*/
 	}
 
-
 	createSnowflake()
 	{
 		this.kolSnow++;
@@ -75,17 +76,22 @@ class Main
 
 	game()
 	{
-		this.mas.forEach(function(el){
+		this.mas.forEach((el,i)=>{
 			el.snow();
+			console.log(document.body.clientHeight);		//ТУТ КОСЯК
+			if(el.posY>1000)
+			{
+				//console.log("==========="+ i);
+				//this.deleteSnow(el,i);
+			}
 		})
 	}
-
 
 	play()
 	{
 		console.log("Test"+this);
 		this.game();
-		if(time=10)
+		if(time==10)
 		{
 			time=0;
 			this.createSnowflake();
@@ -94,6 +100,14 @@ class Main
 		//window.setInterval(this.pack, 100);
 		window.setTimeout(()=>this.play(), 100);
 	}
+
+	deleteSnow(el,i)
+	{
+		delete this.mas[i];
+		document.body.removeChild(el.skin);
+	}
+
+	
 }
 
 window.onload=function()

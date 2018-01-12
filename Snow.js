@@ -79,7 +79,7 @@ class Main
 		this.mas.forEach((el,i)=>{
 			el.snow();
 			console.log(document.body.clientHeight);		//ТУТ КОСЯК
-			if(el.posY>1000)
+			if(el.posY>document.body.clientHeight)
 			{
 				//console.log("==========="+ i);
 				//this.deleteSnow(el,i);

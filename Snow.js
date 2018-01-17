@@ -2,24 +2,30 @@ class snowflake
 {
 	constructor()
 	{
+
+
 		this.type= Math.floor(Math.random()*2);
 		this.posY=-50;
 		this.posX= Math.floor(Math.random() * document.body.clientWidth);
 		this.speedSnow = Math.floor(1+Math.random()*4);
-
-console.log("X coordinate of snowflake: "+this.posX);
 	
-	this.skin = document.createElement('div');
+		this.skin = document.createElement('div');
 		this.skin.style.width = 40 + "px";
 		this.skin.style.height = 40 + "px";
 		this.skin.style.position= "absolute";
 		this.skin.style.left= this.posX + "px";
 		this.skin.style.top= this.posY + "px";
 		document.body.appendChild(this.skin);
-		this.identify();
+		//this.identify();
+
+		this.skin.style.backgroundImage = [ "url(http://galerey-room.ru/images_thumb/093225_1419402745.png)",
+											"url(http://galerey-room.ru/images_thumb/093119_1419402679.png)",
+											"url(http://galerey-room.ru/images_thumb/093242_1419402762.png)"] [Math.floor(Math.random()*2)]
+
+
 	}
 
-	identify()
+	/*identify()
 	{
 		switch(this.type)
 		{
@@ -45,27 +51,21 @@ console.log("X coordinate of snowflake: "+this.posX);
 	snow3()
 	{
 		this.skin.style.backgroundImage = "url(http://galerey-room.ru/images_thumb/093242_1419402762.png)";
-	}
+	}*/
 
 	snow()
 	{
 		this.posY+=this.speedSnow;
 		this.skin.style.top = this.posY +"px";
 	}
-
-	
 }
 
 class Main
 {
 	constructor()
 	{
-		this.kolSnow = 10;
+		this.kolSnow = 0;
 		this.mas = []; 
-	/*	for(var i=0; i<10; i++)
-		{
-			this.createSnowflake();
-		}*/
 	}
 
 	createSnowflake()
@@ -77,19 +77,16 @@ class Main
 	game()
 	{
 		this.mas.forEach((el,i)=>{
-			el.snow();
-			console.log(document.body.clientHeight);		//ТУТ КОСЯК
+			el.snow();	
 			if(el.posY>document.body.clientHeight)
 			{
-				//console.log("==========="+ i);
-				//this.deleteSnow(el,i);
+				this.deleteSnow(el,i);
 			}
 		})
 	}
 
 	play()
 	{
-		console.log("Test"+this);
 		this.game();
 		if(time==10)
 		{
@@ -97,7 +94,6 @@ class Main
 			this.createSnowflake();
 		}
 		time++;
-		//window.setInterval(this.pack, 100);
 		window.setTimeout(()=>this.play(), 100);
 	}
 

@@ -9,7 +9,7 @@ class snowflake
 		this.type= Math.floor(Math.random()*2);
 		this.posY=-50;
 		this.posX= Math.floor(Math.random() * document.body.clientWidth);
-		this.speedSnow = Math.floor((Math.random()*4)+1) * delta + 10;
+		this.speedSnow = Math.floor((Math.random()*40)+10) * delta;
 	
 		this.skin = document.createElement('div');
 		this.skin.style.width = this.skin.style.height = (Math.random()*(50-10+1))+10 + "px";
@@ -44,13 +44,7 @@ class snowflake
 		//this.rotation++;			//Как тут лучше поступить? Этот параметр не трогать, а чисто его плюсовать в переменной, отвечающий за угол поворота? 
 									//Если непосредственно его плюсовать, то вращение в разные стороны пришлось бы делать через условие. Как правильнее?
 
-console.log("t1 = " + t1);
-		let t2 = performance.now();		//Проверить и вынести в отдельный метод
-		delta = (t2-t1);
-		t1 = t2;
-		console.log(delta);
-		
-		console.log("t2 = " + t2);
+
 	}
 }
 
@@ -88,6 +82,19 @@ class Main
 			this.createSnowflake();
 		}
 		time++;
+
+
+
+		let t2 = performance.now();		//Проверить и вынести в отдельный метод
+		delta = (t2-t1)/1000;
+		t1 = t2;
+
+/*console.log("t1 = " + t1);	
+		console.log(delta);
+		console.log("t2 = " + t2);
+*/
+
+
 		window.setTimeout(()=>this.play(), 100);
 	}
 
